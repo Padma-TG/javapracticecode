@@ -1,0 +1,166 @@
+Here are comprehensive notes from the video "Session 20 - Collections in Java | ArrayList | HashSet | HashMap":
+
+### I. Introduction to Collections in Java
+
+*   **Generic Meaning**: A "collection" refers to a group of elements, objects, or items. For example, a collection of books or pens.
+*   **Java's `Collection` Interface**: In Java, `Collection` is a **predefined interface** that serves as the root interface for all collections.
+    *   This interface contains numerous methods and variables.
+    *   It is further **extended into two more interfaces**: `List` and `Set`.
+        *   The `List` interface is implemented by classes like **`ArrayList`**.
+        *   The `Set` interface is implemented by classes like **`HashSet`**.
+    *   These interfaces and their implementing classes are used to **represent a group of objects**.
+    *   All collections in Java (including `ArrayList`, `HashSet`, `HashMap`) are designed to **hold objects, not primitive data types** like `int`, `float`, or `double`.
+        *   If you need to store numbers or other primitive data types, you must use their corresponding **wrapper classes** (e.g., `Integer` for `int`, `Double` for `double`).
+        *   **Strings are allowed** directly because `String` itself is a class, not a primitive type.
+*   **Java.util Package**: All collection classes and interfaces are available in the **`java.util` package**.
+*   **Usage in Automation**: All concepts discussed in Java, including collections, are used in automation.
+
+### II. ArrayList
+
+*   **Definition**: `ArrayList` is a **class that implements the `List` interface**. It's essentially a dynamic array.
+*   **Key Properties of `ArrayList`**:
+    *   **Heterogeneous data is allowed**: You can store different types of objects (e.g., integers, decimals, strings, booleans, characters, user-defined objects) within the same `ArrayList`.
+    *   **Insertion order is preserved**: Elements are stored and retrieved in the same order they were added. This is because `ArrayList` follows **indexing concept** (index starts from 0).
+    *   **Duplicate elements are allowed**: You can store the same object multiple times.
+    *   **Multiple null values are allowed**: You can store `null` multiple times, representing unknown values.
+    *   **Dynamic size**: Unlike traditional arrays, you **do not need to specify a fixed size** when declaring an `ArrayList`. Its size automatically increases or decreases as elements are added or removed.
+
+*   **Declaring `ArrayList`**:
+    *   **For heterogeneous data**:
+        *   `ArrayList mylist = new ArrayList();`
+        *   `List mylist = new ArrayList();` (Child class object in parent class variable)
+    *   **For homogeneous data (restricting type)**: Use **wrapper classes** within angular brackets (`<>`).
+        *   `ArrayList<Integer> mylist = new ArrayList<Integer>();` (stores only `Integer` objects)
+        *   `ArrayList<String> mylist = new ArrayList<String>();` (stores only `String` objects)
+        *   `ArrayList<Employee> mylist = new ArrayList<Employee>();` (stores only `Employee` objects)
+
+*   **Operations on `ArrayList`**:
+    *   **Adding Data**:
+        *   `myList.add(value)`: Adds an element to the **end of the list**.
+    *   **Getting Size**:
+        *   `myList.size()`: Returns the number of elements in the `ArrayList`. (Note: It's `size()` method for `ArrayList`, not `length` like arrays).
+    *   **Printing `ArrayList`**:
+        *   Simply print the `ArrayList` object directly: `System.out.println(myList)`.
+    *   **Removing Elements**:
+        *   `myList.remove(index)`: Removes the element at the specified index.
+        *   **Removing multiple elements randomly**: Create a separate `ArrayList` containing the elements you wish to remove, then use `originalList.removeAll(elementsToRemoveList)`.
+        *   **Removing all elements**: `myList.clear()`: Clears all elements from the `ArrayList`. Once cleared, elements cannot be retrieved.
+    *   **Inserting Elements**:
+        *   `myList.add(index, value)`: Inserts an element at a specific index in the middle of the list. Existing elements from that index onwards are shifted to the next positions.
+    *   **Modifying/Replacing Elements**:
+        *   `myList.set(index, newValue)`: Replaces the element at the specified index with a new value.
+    *   **Accessing Specific Elements**:
+        *   `myList.get(index)`: Retrieves the element at the specified index.
+    *   **Reading All Elements**:
+        *   **Using a normal `for` loop**: Iterate from `i = 0` to `myList.size() - 1`, using `myList.get(i)`.
+        *   **Using an enhanced `for` loop (for each loop)**: `for (Object x : myList) { System.out.println(x); }`. The variable type should be `Object` if the `ArrayList` contains heterogeneous data.
+        *   **Using an `Iterator`**:
+            *   Get an `Iterator` object: `Iterator it = myList.iterator();`.
+            *   Use a `while` loop: `while (it.hasNext()) { System.out.println(it.next()); }`.
+            *   `hasNext()` checks if the next element exists; `next()` retrieves it and moves the cursor.
+            *   Useful when the size of the list is unknown.
+    *   **Checking if `ArrayList` is Empty**:
+        *   `myList.isEmpty()`: Returns `true` if the `ArrayList` contains no elements, `false` otherwise.
+
+### III. HashSet
+
+*   **Definition**: `HashSet` is a **class that implements the `Set` interface**.
+*   **Key Properties of `HashSet`**:
+    *   **Heterogeneous data allowed**: Similar to `ArrayList`, it can store different types of objects.
+    *   **Insertion order is NOT preserved**: Elements are *not* stored or retrieved in the order they were added. This is because `HashSet` uses a **hashing technique** and does not support indexing.
+    *   **Duplicate elements are NOT allowed**: If you try to add a duplicate, it will be automatically ignored/eliminated.
+    *   **Only one null value is allowed**: Multiple nulls are treated as duplicates and only one will be stored.
+    *   Dynamic size.
+*   **Declaring `HashSet`**:
+    *   `HashSet mySet = new HashSet();`
+    *   `Set mySet = new HashSet();` (Child class object in parent class variable)
+    *   For homogeneous data: `HashSet<String> mySet = new HashSet<String>();`. Primitive types are not allowed.
+
+*   **Operations on `HashSet`**:
+    *   **Adding Elements**:
+        *   `mySet.add(value)`: Adds an element to the `HashSet`. It will not give an error if you add a duplicate, but the duplicate will not be stored.
+    *   **Getting Size**:
+        *   `mySet.size()`: Returns the number of elements.
+    *   **Printing `HashSet`**:
+        *   Print the `HashSet` object directly: `System.out.println(mySet)`.
+    *   **Removing Elements**:
+        *   `mySet.remove(value)`: Removes a specific element by directly specifying its value (not index).
+        *   **Clearing all elements**: `mySet.clear()`: Removes all elements.
+    *   **Inserting Elements in the Middle**: **NOT possible** in `HashSet` because there is no insertion order or indexing.
+    *   **Accessing Specific Elements**: **NOT directly possible** from `HashSet` because there's no indexing.
+        *   **Workaround**: Convert the `HashSet` to an `ArrayList` first, then you can access elements using `get(index)` method of `ArrayList`.
+    *   **Reading All Elements**:
+        *   **Normal `for` loop**: **NOT possible** because `HashSet` does not support indexing.
+        *   **Enhanced `for` loop (for each loop)**: `for (Object x : mySet) { System.out.println(x); }`.
+        *   **Using an `Iterator`**: Similar to `ArrayList`, use `mySet.iterator()`, `hasNext()`, and `next()`.
+    *   **Checking if `HashSet` is Empty**:
+        *   `mySet.isEmpty()`: Returns `true` if empty, `false` otherwise.
+
+### IV. HashMap
+
+*   **Definition**: `HashMap` is a **class that implements the `Map` interface**.
+    *   **Important Note**: The `Map` interface is **independent** and is not derived from the `Collection` interface.
+*   **Data Storage in `HashMap`**:
+    *   `HashMap` stores data in **key-value pairs**.
+    *   A combination of one key and one value is called a "pair". Examples include Employee ID & Name, Phone Number & Person Name, Country & Capital.
+*   **Key Properties of `HashMap`**:
+    *   **Keys are always unique**: Duplicate keys are **not allowed**. If you add a pair with an existing key, the **old value associated with that key will be replaced** by the new value.
+    *   **Values can be duplicated**: Multiple keys can map to the same value.
+    *   **Insertion order is NOT preserved**: `HashMap` follows a **hashing technique**, so there is no indexing or guaranteed order of elements.
+    *   When adding or removing data, it must be done as a **key-value pair**; you cannot add/remove only a key or only a value.
+
+*   **Declaring `HashMap`**:
+    *   When declaring, you **must specify the data types** for both the key and the value within angular brackets.
+    *   Example: `HashMap<Integer, String> hm = new HashMap<Integer, String>();` (Keys are `Integer`, values are `String`).
+    *   You can also declare using the parent interface: `Map<Integer, String> myMap = new HashMap<Integer, String>();`.
+    *   If no specific type is given, it will allow any type of key and value (heterogeneous).
+
+*   **Operations on `HashMap`**:
+    *   **Adding Pairs**:
+        *   `hm.put(key, value)`: Adds a key-value pair to the `HashMap`. This is also used to change/replace the value of an existing key.
+    *   **Getting Size**:
+        *   `hm.size()`: Returns the number of key-value pairs.
+    *   **Printing `HashMap`**:
+        *   Print the `HashMap` object directly: `System.out.println(hm)`.
+    *   **Removing Pairs**:
+        *   `hm.remove(key)`: Removes the entire key-value pair based on the provided key.
+    *   **Accessing Values**:
+        *   `hm.get(key)`: Retrieves the value associated with the specified key.
+    *   **Retrieving Keys and Values**:
+        *   `hm.keySet()`: Returns a `Set` containing all the keys in the `HashMap`.
+        *   `hm.values()`: Returns a collection containing all the values in the `HashMap`.
+        *   `hm.entrySet()`: Returns a `Set` of `Map.Entry` objects, where each `Entry` represents a key-value pair.
+    *   **Reading Data from `HashMap`**:
+        *   **Normal `for` loop**: **NOT possible** as `HashMap` does not support indexing.
+        *   **Using an enhanced `for` loop (for each loop)**:
+            *   Iterate over the `keySet()` to get each key: `for (Integer k : hm.keySet()) { System.out.println(k + " " + hm.get(k)); }`. This is the simpler and preferred approach.
+        *   **Using an `Iterator`**: This method is more complex for `HashMap`.
+            *   First, get the `entrySet()` from the `HashMap`: `hm.entrySet()`.
+            *   Then, apply the `iterator()` method on this `entrySet()`: `Iterator<Map.Entry<Integer, String>> it = hm.entrySet().iterator();`.
+            *   Use a `while` loop with `it.hasNext()` and `it.next()`.
+            *   Each `it.next()` call returns a `Map.Entry` object, from which you can extract the key and value using `entry.getKey()` and `entry.getValue()` respectively.
+    *   **Clearing `HashMap`**:
+        *   `hm.clear()`: Removes all key-value pairs from the `HashMap`.
+    *   **Checking if `HashMap` is Empty**:
+        *   `hm.isEmpty()`: Returns `true` if empty, `false` otherwise.
+
+### V. Comparisons and Similarities
+
+*   **Common Points for `ArrayList` and `HashSet`**:
+    *   Both allow heterogeneous data.
+    *   Both have `add()`, `remove()`, `size()`, and `isEmpty()` methods.
+    *   Both are dynamic in size.
+*   **Differences between `ArrayList` and `HashSet`**:
+    *   **Insertion Order**: `ArrayList` preserves it (uses indexing); `HashSet` does not (uses hashing).
+    *   **Duplicates**: `ArrayList` allows duplicates; `HashSet` does not.
+    *   **Nulls**: `ArrayList` allows multiple nulls; `HashSet` allows only one null.
+    *   **Specific Element Access**: `ArrayList` has `get(index)`; `HashSet` does not directly support it.
+    *   **Insertion in Middle**: `ArrayList` allows insertion using `add(index, value)`; `HashSet` does not.
+*   **`HashMap` vs. `Collection` Hierarchy**:
+    *   `HashMap` is based on the `Map` interface, which is separate from the `Collection` interface hierarchy (`List`, `Set`).
+    *   `HashMap` stores key-value pairs, unlike `ArrayList` and `HashSet` which store single elements.
+
+### VI. Conclusion
+
+*   Choosing the right collection (`ArrayList`, `HashSet`, or `HashMap`) depends on the specific requirements of your data (e.g., need for order, duplicates, key-value pairs).
+*   Practicing these three major collections is crucial for automation and programming.

@@ -1,0 +1,39 @@
+/*
+=====================================
+🌟 Object Type Casting - 3 Golden Rules
+=====================================
+
+🔹 Rule 1: Casting Type and Variable Type MUST Be Related (Compile-Time Check)
+    → The type you're casting to and the reference variable you're casting FROM must have
+      a parent-child or same class relationship.
+    → If not, compiler error.
+
+    ✅ Example: 
+        Animal a = new Dog();         // Valid
+        Dog d = (Dog) a;              // Valid - Dog and Animal are related
+
+    ❌ Invalid:
+        String s = (String) new Integer(10);   // ❌ Compile-time error
+
+🔹 Rule 2: Left-Side Assignment Type MUST Be Same as or Parent of Casting Type (Compile-Time Check)
+    → The variable you're assigning to must be the same type as the cast OR a parent of the cast type.
+
+    ✅ Example:
+        Animal a = (Animal) new Dog();   // Valid, Animal is parent of Dog
+
+    ❌ Invalid:
+        Dog d = (Dog) new Animal();      // ❌ Animal cannot be assigned to Dog without cast
+
+🔹 Rule 3: Actual Object Type MUST Match or Be Child of Cast Type (Runtime Check)
+    → The object in memory (new object) must match or be a child of the cast type.
+    → If not, you'll get a `ClassCastException` at runtime.
+
+    ✅ Example:
+        Animal a = new Dog();
+        Dog d = (Dog) a;     // ✔️ Works at runtime, object is actually Dog
+
+    ❌ Example:
+        Animal a = new Animal();
+        Dog d = (Dog) a;     // ❌ Compiles, but fails at runtime (ClassCastException)
+
+*/
